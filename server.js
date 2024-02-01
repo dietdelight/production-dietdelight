@@ -29,7 +29,7 @@ app.use("/api/v1/foodDiaries", require("./routes/foodDiaryRoutes"));
 app.use("/api/v1/communityRecipes", require("./routes/communityRecipesRoutes"));
 
 //home
-app.get("/", (req,res)=>){
+app.get("/", (req,res)=>{
   res.status(200).send({
     "success":true,
       "msg":"Node Server Running" 
