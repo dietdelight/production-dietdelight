@@ -28,6 +28,13 @@ app.use("/api/v1/foodDiaries", require("./routes/foodDiaryRoutes"));
 
 app.use("/api/v1/communityRecipes", require("./routes/communityRecipesRoutes"));
 
+//home
+app.get("/", (req,res)=>){
+  res.status(200).send({
+    "success":true,
+      "msg":"Node Server Running" 
+  })
+})
 // In your server setup or a separate scheduler file
 const cron = require("node-cron");
 const { resetDailyProgress } = require("./controllers/userController");
