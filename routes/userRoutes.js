@@ -11,7 +11,7 @@ const {
   deleteUserByAdmin,
   metricsUpdateController,
   updateCalorie,
-  resetDailyProgress,
+  updateSleepController,
   requireSignIn,
 } = require("../controllers/userController");
 
@@ -31,6 +31,8 @@ router.put("/update-profile", requireSignIn, updateUserController);
 router.put("/update-goal", updateGoalController);
 
 router.put("/update-waterintake", updateWaterIntakeController);
+
+router.put("/update-sleep", updateSleepController);
 
 router.put("/update-activeworkout", updateActiveWorkout);
 
