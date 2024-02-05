@@ -262,6 +262,39 @@ const updateWaterIntakeController = async (req, res) => {
   }
 };
 
+const updateSleepController = async (req, res) => {
+  try {
+    const { email, step } = req.body;
+    // Find the user by email
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    const updateSleep = await userModel.findOneAndUpdate(
+      { email },
+      {
+        step: step !== undefined ? step : user.step,
+      },
+      { new: true }
+    );
+    // Return the updated user data
+    res.status(200).send({
+      success: true,
+      updateSleep,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error In water intake addition",
+      error,
+    });
+  }
+};
+
 const updateActiveWorkout = async (req, res) => {
   const { email, duration } = req.body;
   try {
