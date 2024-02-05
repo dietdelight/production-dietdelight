@@ -457,8 +457,6 @@ const metricsUpdateController = async (req, res) => {
 
 const resetDailyProgress = async () => {
   try {
-    // Example logic to reset user fields
-    // Update this with actual fields and logic as per your application's requirements
     await userModel.updateMany(
       {},
       { $set: { waterIntake: 0, calorie: 0, step: 0, activeWorkout: 0 } }
@@ -484,4 +482,5 @@ module.exports = {
   metricsUpdateController,
   updateCalorie,
   resetDailyProgress,
+  updateSleepController,
 };
