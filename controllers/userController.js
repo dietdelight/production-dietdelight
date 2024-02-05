@@ -20,12 +20,12 @@ const registerController = async (req, res) => {
       userType,
       calorieGoal,
       fitnessGoal,
-      stepGoal,
+      sleepGoal,
       activeWorkoutGoal,
       waterIntakeGoal,
       calorie,
       fitness,
-      step,
+      sleep,
       activeWorkout,
       waterIntake,
     } = req.body;
@@ -57,12 +57,12 @@ const registerController = async (req, res) => {
       role: userType,
       calorieGoal,
       fitnessGoal,
-      stepGoal,
+      sleepGoal,
       activeWorkoutGoal,
       waterIntakeGoal,
       calorie,
       fitness,
-      step,
+      sleep,
       activeWorkout,
       waterIntake,
     }).save();
@@ -183,7 +183,7 @@ const updateGoalController = async (req, res) => {
       email,
       calorieGoal,
       fitnessGoal,
-      stepGoal,
+      sleepGoal,
       activeWorkoutGoal,
       waterIntakeGoal,
     } = req.body;
@@ -201,7 +201,7 @@ const updateGoalController = async (req, res) => {
       {
         calorieGoal: calorieGoal !== undefined ? calorieGoal : user.calorieGoal,
         fitnessGoal: fitnessGoal !== undefined ? fitnessGoal : user.fitnessGoal,
-        stepGoal: stepGoal !== undefined ? stepGoal : user.stepGoal,
+        sleepGoal: sleepGoal !== undefined ? sleepGoal : user.sleepGoal,
         activeWorkoutGoal:
           activeWorkoutGoal !== undefined
             ? activeWorkoutGoal
@@ -264,7 +264,7 @@ const updateWaterIntakeController = async (req, res) => {
 
 const updateSleepController = async (req, res) => {
   try {
-    const { email, step } = req.body;
+    const { email, sleep } = req.body;
     // Find the user by email
     const user = await userModel.findOne({ email });
     if (!user) {
@@ -276,7 +276,7 @@ const updateSleepController = async (req, res) => {
     const updateSleep = await userModel.findOneAndUpdate(
       { email },
       {
-        step: step !== undefined ? step : user.step,
+        sleep: sleep !== undefined ? sleep : user.sleep,
       },
       { new: true }
     );
@@ -285,6 +285,7 @@ const updateSleepController = async (req, res) => {
       success: true,
       updateSleep,
     });
+    2222;
   } catch (error) {
     console.log(error);
     res.status(500).send({
@@ -358,11 +359,11 @@ const updateUserAccountByAdmin = async (req, res) => {
       weight,
       height,
       calorieGoal,
-      stepGoal,
+      sleepGoal,
       waterIntake,
       waterIntakeGoal,
       calorie,
-      step,
+      sleep,
       activeWorkout,
     } = req.body;
 
@@ -383,11 +384,11 @@ const updateUserAccountByAdmin = async (req, res) => {
     userToUpdate.weight = weight || userToUpdate.weight;
     userToUpdate.height = height || userToUpdate.height;
     userToUpdate.calorieGoal = calorieGoal || userToUpdate.calorieGoal;
-    userToUpdate.stepGoal = stepGoal || userToUpdate.stepGoal;
+    userToUpdate.sleepGoal = sleepGoal || userToUpdate.sleepGoal;
     userToUpdate.waterIntakeGoal =
       waterIntakeGoal || userToUpdate.waterIntakeGoal;
     userToUpdate.calorie = calorie || userToUpdate.calorie;
-    userToUpdate.step = step || userToUpdate.step;
+    userToUpdate.sleep = sleep || userToUpdate.sleep;
     userToUpdate.activeWorkout = activeWorkout || userToUpdate.activeWorkout;
     userToUpdate.waterIntake = waterIntake || userToUpdate.waterIntake;
 
@@ -437,7 +438,7 @@ const metricsUpdateController = async (req, res) => {
     const metricsData = {
       calorie: user.calorie,
       waterIntake: user.waterIntake,
-      step: user.step,
+      sleep: user.sleep,
       activeWorkout: user.activeWorkout,
     };
 
@@ -459,7 +460,7 @@ const resetDailyProgress = async () => {
   try {
     await userModel.updateMany(
       {},
-      { $set: { waterIntake: 0, calorie: 0, step: 0, activeWorkout: 0 } }
+      { $set: { waterIntake: 0, calorie: 0, sleep: 0, activeWorkout: 0 } }
     );
 
     console.log("Daily progress reset completed successfully.");

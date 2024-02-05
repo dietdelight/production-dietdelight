@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema(
     fitnessGoal: {
       type: Number,
     },
-    stepGoal: {
+    sleepGoal: {
       type: Number,
     },
     activeWorkoutGoal: {
@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema(
     fitness: {
       type: Number,
     },
-    step: {
+    sleep: {
       type: Number,
     },
     activeWorkout: {

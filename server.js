@@ -19,6 +19,14 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
+//Home
+app.get("/",(req,res)=>{
+  res.status(200).send({
+    "success":true,
+    "msg":"Node server running"
+  })
+})
+
 //ROUTES
 app.use("/api/v1/auth", require("./routes/userRoutes"));
 
